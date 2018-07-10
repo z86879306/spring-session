@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>成长记录</title>
+<head th:include="components :: header"></head>
+<style type="text/css">
+	body {
+		background-color: #fff;
+	}
+	.ardar .list .evaluation > div{float: inherit;width: 100%;}
+	.comments{clear: both;margin: 0.3rem 0rem;background: #f1f1f8;border-radius: 8px;padding: 0.4rem 0.3rem;}
+	.comments h4{color:#013183 ;font-size: 0.24rem;width: 100%;text-align: left;padding-bottom:0.2rem;}
+	.comments .comments_cnt{color: #666666;line-height: 1.5;}
+</style>
+<body>
+	<div class="camp-detail record">
+		<div class="record-detail">
+			<script type="text/html" id="recordDetail">
+				<div class="bg" style="background: url(<%=data.imgurl;%>) no-repeat center center / 100% auto"></div>
+				<div class="camp-top">
+					<div class="title"><%=data.theme;%><span style="font-size: 0.24rem;font-weight: normal;">&nbsp;<%=level(data.level,data.type);%></span></div>
+					<!--<div class="price">¥ <%=data.price;%></div>-->
+					<div class="teacher">主训教官： <%=data.instructor;%></div>
+				</div>
+				<div class="opening-time common-time">
+					<span>开营时间：</span>
+	    			<span class="new-time"><%=data.campBegin;%></span>
+	    			<span>-</span>
+	    			<span class="new-time"><%=data.campEnd;%></span>
+				</div>
+		    </script>
+		</div>
+
+		<div class="ardar">
+			<script type="text/html" id="ardar">
+				<%if(data.AvgTrainAndAvgperson != null){%>
+					<div class="list">
+						<div class="title active compass"><span>综合品质罗盘</span></div>
+						<div class="chart clear">
+							<canvas></canvas>
+						</div>
+					</div>
+				<%}else{%>
+				<%}%>
+				
+				<%for(var i=0;i<data.AvgThemeAndperson.length;i++){%>					
+					<div class="list">
+						<%if(data.AvgThemeAndperson[i].status == 1){%>
+							<div class="title "><%=data.AvgThemeAndperson[i].name;%></div>
+						<%}else{%>
+							<div class="title active compass2" style="margin-top: 0.5rem;"><%=data.AvgThemeAndperson[i].name;%></div>
+						<%}%>
+						
+						<%var themeTask = data.AvgThemeAndperson[i].themeTaskResultList;%>
+						<%if(themeTask!=null){%>
+							<div class="record_evalut">评估考核：</div>
+							<%for(var j=0; j<themeTask.length;j++){%>
+								<div class="evaluation clear">
+									<div> - <%=themeTask[j].themeTaskDO.taskName;%> ( <span class="evalu"><%=getScore(themeTask[j].result);%></span> )</div>
+								</div>
+							<%}%>							
+						<%}%>							
+						<%if(data.AvgThemeAndperson[i].param1 != null){%>
+							<div class="chart clear">
+								<canvas></canvas>
+							</div>
+						<%}%>
+					</div>
+					<div class="comments">
+						<h4>综合评价</h4>
+						<div class="comments_cnt"><%=data.AvgThemeAndperson[i].comments%></div>
+					</div>
+					<div class="record_btm"><img src="images/record_img.png"/></div>
+				<%}%>
+				<!-- <div class="list">
+					<div class="title active">掌握公共礼仪</div>
+					<div class="common-time time">开营时间: 2018/05/03 08:30 - 2018/05/12 09:00</div>
+					<div class="evaluation clear">
+						<div>考勤情况: <span class="evalu">出勤</span></div>
+						<div>记录: <span class="evalu">已完成</span></div>
+						<div>晋升环: <span class="evalu">木匠晋升环</span></div>
+					</div>
+					
+					<div class="chart clear">
+						<canvas></canvas>
+						<div class="tips"></div>
+					</div>
+				</div> -->
+			</script>
+				<!--<div class="common-time time">开营时间: <%=data.AvgThemeAndperson[i].begin_time;%> - <%=data.AvgThemeAndperson[i].end_time;%></div>
+				<div class="evaluation clear">
+						<%if(data.AvgThemeAndperson[i].check == 0){%>
+							<div>考勤情况: <span class="evalu">未考勤</span></div>
+						<%}else if(data.AvgThemeAndperson[i].check == 1){%>
+							<div>考勤情况: <span class="evalu">出勤</span></div>
+						<%}else if(data.AvgThemeAndperson[i].check == 2){%>
+							<div>考勤情况: <span class="evalu">请假</span></div>
+						<%}else{%>
+							<div>考勤情况: <span class="evalu">补假</span></div>
+						<%}%>
+
+						<%if(data.AvgThemeAndperson[i].result == null){%>
+							<%if(data.AvgThemeAndperson[i].complete == 1){%>
+								<div>记录: <span class="evalu">已完成</span></div>
+							<%}else{%>
+								<div>记录: <span class="evalu">未完成</span></div>
+							<%}%>
+						<%}else{%>
+							<div>记录: <span class="evalu"><%=data.AvgThemeAndperson[i].result;%>分</span></div>
+						<%}%>
+						<div>晋升环: <span class="evalu"><%=data.AvgThemeAndperson[i].ringname;%></span></div>
+					</div>-->
+		</div>
+	</div>
+<div th:include="components::footer"></div>
+</body>
+<script>
+	page.record();
+</script>
+</html>

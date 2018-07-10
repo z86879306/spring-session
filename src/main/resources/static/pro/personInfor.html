@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>个人资料</title>
+<head th:include="components :: header"></head>
+<style type="text/css">
+	body {
+		background-color: #fff;
+	}
+</style>
+<body>
+	<div class="person-infor">
+		<script type="text/html" id="personInf">
+			<div class="avatar">
+				<img src="<%=data.img;%>" alt="">
+			</div>
+			<div class="number">ID: &nbsp;<%=data.parentId;%></div>
+
+			<div class="inf-box">
+
+				<div class="user-name">
+					<div class="left">昵 称:</div>
+					<div class="right">
+						<input type="text" value="<%=data.parentName;%>">
+					</div>
+				</div>
+				<div class="sex common-sex">
+					<div class="left">性 别:</div>
+					<div class="right">
+						<%if(data.sex == 1){%>
+							<span class="active">男</span>
+							<span>女</span>
+						<%}else{%>
+							<span>男</span>
+							<span class="active">女</span>
+						<%}%>
+					</div>
+				</div>
+				<div class="wx-number">
+					<div class="left">微信ID:</div>
+					<div class="right">
+						<input type="text" value="<%=data.wechatId;%>" placeholder="请输入微信ID">
+					</div>
+				</div>
+				<div class="address">
+					<div class="left">家庭住址:</div>
+					<div class="right">
+						<%if(data.addrname2 == null){%>
+							<div class="addr" id="addr">浙江省 温州市 鹿城区</div>
+						<%}else{%>
+							<div class="addr" id="addr"><%=data.addrname2;%></div>
+						<%}%>
+						<textarea class="detail-addr" placeholder="详细地址"><%=data.address;%></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="common-btn bottom-btn save-btn">保存</div>
+		</script>
+	</div>
+<div th:include="components::footer"></div>
+</body>
+<script type="text/javascript">
+	page.infor();
+</script>
+</html>

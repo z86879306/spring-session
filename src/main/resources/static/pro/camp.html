@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>训练营</title>
+<head include="components :: header"></head>
+<style type="text/css">
+	body {
+		padding-bottom: 1rem;
+	}
+</style>
+<body>
+	<div class="camp">
+		<div class="swiper-common">
+	        <div class="swiper-wrapper">
+	            <script type="text/html" id="Carousel">
+					<%for(var i = 0;i < data.length; i++){%>
+						<div class="swiper-slide">
+			            	<img src="<%=data[i].imgUrl;%>" alt="">
+			            </div>
+					<%}%>
+				</script>
+	        </div>
+	    	<div class="swiper-pagination"></div>
+	    </div>
+		
+		<div class="camp-cont">
+		    <div class="tab-item">
+		    	<div class="items clear">
+		    		<ul>
+		    			<li class="active" data-type='3'>特训营</li>
+		    			<li class="up-train">晋升营</li>
+		    			<li data-type='2'>夏冬营</li>
+		    			<li data-type='4'>体验营</li>		    			
+		    		</ul>
+		    	</div>
+		    </div>
+
+		    <div class="camp-list">		    	
+		    </div>
+
+		    <script type="text/html" id="campList">
+				<%if(data!=null){%>
+					<%for(var i=0;i<data.lowPriceList.length;i++){%>
+						<div class="list">
+				    		<div class="bg" data-id="<%=data.lowPriceList[i].trainDetailDO.trainId;%>" style="background: url(<%=data.lowPriceList[i].trainDetailDO.imgurl;%>) no-repeat center center / 100% auto">
+				    			<!--<div class="price">¥ <%=data.lowPriceList[i].lowPrice;%></div>-->
+				    		</div>
+				    		<div class="camp-name">
+				    			<span><%=data.lowPriceList[i].trainDetailDO.theme;%></span>
+				    		</div>
+			    			<div class="time">
+			    				<span>共<%=data.themeList[i].length;%>期：</span>
+		    					<%for(var j=0;j<data.themeList[i].length;j++){%>
+		    						<span class="new-time"><%=data.themeList[i][j].campBegin;%></span>
+			    					<span>|</span>
+		    					<%}%>
+			    			</div>
+				    	</div>
+					<%}%>
+				<%}else{%>
+					<div class="no-data">暂无训练营数据</div>
+				<%}%>
+			</script>
+	    </div>
+	</div>
+<div include="components::footer"></div>
+</body>
+<script type="text/javascript">
+		var type_url =component.GetUrlParam('type');
+		page.camp();
+		
+		
+</script>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>登录</title>
+<!--<head include="components :: header"></head>-->
+<include src="pro/components.html"></include>
+<body>
+	<div class="login">
+		<div class="login-logo">
+			<img src="images/logo.png" alt="">
+		</div>
+		<div class="user-inf phone">
+            <input type="tel" placeholder="手机号" maxlength="11">
+		</div>
+		<div class="user-inf v-code clear">
+            <input type="text" placeholder="验证码" class="fl">
+            <button class="send-code fr">发送</button>
+		</div>
+		<div class="login-btn common-btn">登录</div>
+	</div>
+<div include="pro/components::footer"></div>
+</body>
+<script type="text/javascript">
+	tzj.login();
+</script>
+</html>

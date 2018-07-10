@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>个人中心</title>
+<head th:include="components :: header"></head>
+<style type="text/css">
+	body {
+		padding-bottom: 1rem;
+		background-color: #f1f1f8;
+	}
+</style>
+<script type="text/javascript">
+	(function() {
+		var isLogin = localStorage.getItem('userInf');
+		if(!isLogin) {
+			location.href = 'login.html';
+		}
+	})()
+</script>
+<body>
+	<div class="person">
+		<div class="avatar">
+			<script type="text/html" id="avatar">
+				<img src="<%=data.img;%>" alt="">
+			</script>
+		</div>
+
+		<div class="person-lists">
+			<a href="personInfor.html" class="list mb-40 icon01">个人资料</a>
+			<a href="javascript:;" class="list mb-1 icon02 glory">我的荣誉</a>
+			<a href="addScout.html" class="list mb-40 icon03">新增童军</a>
+			<a href="javascript:;" class="list mb-40 icon04 reported">已报营名</a>
+			<a href="company.html" class="list mb-40 icon05 contact-us">联系基地</a>
+		</div>
+		
+		<!-- mask -->
+		<div class="pop-mask" data-is-bind-scroll="true">
+			<script type="text/html" id="scout">
+				<div class="pay-box">
+					<div class="title">
+						<span>选择童军</span>
+						<div class="close-pop"></div>
+					</div>
+					<div class="scouts common-border">
+						<%for(var i = 0 ; i < data.length; i++){%>
+							<%if(i == 0){%>
+								<div class="active" data-id="<%=data[i].scoutId;%>"><%=data[i].name;%></div>
+							<%}else{%>
+								<div data-id="<%=data[i].scoutId;%>"><%=data[i].name;%></div>
+							<%}%>
+						<%}%>
+					</div>
+					<div class="common-btn">确定</div>
+				</div>
+			</script>
+		</div>
+	</div>
+<div th:include="components::footer"></div>
+</body>
+<script src="js/smartScroll.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+		page.person();
+		var popType = component.GetUrlParam("pop");
+</script>
+</html>

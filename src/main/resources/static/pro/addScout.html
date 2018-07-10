@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>新增童军</title>
+<head th:include="components :: header"></head>
+ <style type="text/css">
+	body {
+		background-color: #fff;
+	}
+</style>
+<body>
+	<div class="person-infor add-scout">
+		<div class="inf-box">
+			<div class="user-name">
+				<div class="left">*童军姓名:</div>
+				<div class="right">
+					<input type="text" placeholder="请输入童军姓名">
+				</div>
+			</div>
+			<div class="sex common-sex">
+				<div class="left">*性 别:</div>
+				<div class="right">
+					<span class="active">男</span>
+					<span>女</span>
+				</div>
+			</div>
+			<div class="common-card id-card">
+				<div class="left">身份证:</div>
+				<div class="right">
+					<div class="id_type" id="id_trigger">身份证</div>
+					<input type="text" placeholder="请输入身份证">
+				</div>
+			</div>
+			<div class="common-height">
+				<div class="left">身 高:</div>
+				<div class="right">
+					<div class="height-box" id="selectHeight">身高</div>
+					<span>cm</span>
+				</div>
+			</div>
+			<div class="common-height weight">
+				<div class="left">体 重:</div>
+				<div class="right">
+					<input type="number" placeholder="体重">
+					<span>kg</span>
+				</div>
+			</div>
+			<div class="swim common-sex">
+				<div class="left">是否会游泳:</div>
+				<div class="right">
+					<span>是</span>
+					<span>否</span>
+				</div>
+			</div>
+			<div class="drug">
+				<div class="left">过敏药物:</div>
+				<div class="right">
+					<input type="text" placeholder="无">
+				</div>
+			</div>
+			<div class="health">
+				<div class="left">健康史:</div>
+				<div class="right">
+					<textarea placeholder="无"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="common-btn bottom-btn save-btn">生成童军</div>
+	</div>
+<div th:include="components::footer"></div>
+</body>
+<script type="text/javascript">
+	page.addScout();
+</script>
+</html>

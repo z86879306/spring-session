@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>已报营名</title>
+<head th:include="components :: header"></head>
+<body>
+	<div class="camp">
+		<div class="camp-cont">
+		 	<div class="camp-list">
+				<script type="text/html" id="reportedLists">
+					<%if(data.scoutSignupList.length > 0){%>
+						<%for(var i=0;i<data.scoutSignupList.length;i++){%>
+							<div class="list">
+					    		<div class="bg" data-id="<%=data.scoutSignupList[i].trainDetail.trainId;%>" style="background: url(<%=data.scoutSignupList[i].trainDetail.imgurl;%>) no-repeat center center / 100% auto">
+					    			<!--<div class="price">¥ <%=data.scoutSignupList[i].price;%></div>-->
+					    		</div>
+					    		<div class="camp-name">
+					    			<span><%=data.scoutSignupList[i].trainDetail.theme;%></span>
+					    			<span><%=data.scoutSignupList[i].trainDetail.level;%>期</span>
+									
+									<%if(data.scoutSignupList[i].trainDetail.status == 1){%>
+										<span class="to-begin">待开始</span>
+									<%}else if(data.scoutSignupList[i].trainDetail.status == 2){%>
+										<span class="progess">正在展开</span>
+									<%}else{%>
+										<span class="record">已经结束</span>
+									<%}%>
+					    			
+					    		</div>
+					    		<div class="time">
+					    			<span>开营时间：</span>
+					    			<span class="new-time"><%=data.scoutSignupList[i].trainDetail.campBegin;%></span>
+					    			<span>-</span>
+					    			<span class="new-time"><%=data.scoutSignupList[i].trainDetail.campEnd;%></span>
+					    		</div>
+					    	</div>
+						<%}%>
+					<%}else{%>
+						<div class="no-data">暂无训练营数据</div>
+					<%}%>
+				</script>
+			</div>
+	    </div>
+	</div>
+<div th:include="components::footer"></div>
+</body>
+<script type="text/javascript">
+	page.campReported();
+</script>
+</html>

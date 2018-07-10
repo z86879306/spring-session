@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>我的荣誉</title>
+<head th:include="components :: header"></head>
+ <style type="text/css">
+	body {
+		background-color: #fff;
+	}
+</style>
+<body>
+	<div class="glory">
+		<div class="scout-inf bg clear">
+			<script type="text/html" id="gloryScout">
+				<div class="left fl">
+					<div class="scout-card">童军ID: <%=data.scoutDO.scoutId;%></div>
+					<div class="scout-name">童军姓名: <%=data.scoutDO.name;%></div>
+					<a href="scoutInfo.html?id=<%=data.scoutDO.scoutId;%>">童军信息</a>
+				</div>
+				<div class="right fr">
+					<div class="scout-icon" style="background: url(<%=data.rankDO[0].img;%>) no-repeat center center / 1.63rem auto;"></div>
+					<div class="rank">军阶: <%=data.rankDO[0].name;%></div>
+				</div>
+			</script>
+		</div>
+		
+		<div class="glory-cont">
+			<div class="ring-cont">
+				<script type="text/html" id="scoutRing">
+					<div class="ring">已获晋升环 (<%=data.ringList.length;%>)</div>
+					<div class="swiper-ring">
+				        <div class="swiper-wrapper">
+	    					<%for(var i = 0 ; i < data.ringList.length; i++){%>
+								<div class="swiper-slide">
+					            	<div class="img">
+					            		<img src="<%=data.ringList[i].logo;%>" alt="">
+					            	</div>
+					            	<div class="name"><%=data.ringList[i].ringName;%></div>
+					            	<div class="num">X<%=data.ringList[i].num;%>枚</div>
+					            </div>
+							<%}%>
+				        </div>
+				    </div>
+			    </script>
+			</div>
+			<div class="glory-tab clear">
+				<ul>
+					<li class="active" data-type='1'>进行中·训练营</li>
+					<li data-type='2'>已完成·训练营</li>
+				</ul>
+			</div>
+
+		    <div class="camp">
+				<div class="camp-cont">
+				    <div class="camp-list">
+				    	<!-- <div class="list">
+				    		<div class="bg" style="background: url('./images/b2.png') no-repeat center center / 100% auto">
+				    			<div class="price">¥ 1200</div>
+				    		</div>
+				    		<div class="camp-name">
+				    			<span>色彩构成训练营</span>
+				    			<span>一期</span>
+				    			<span class="record" data-id="1">成长记录</span>
+				    		</div>
+				    		<div class="time">开营时间：2018/05/03 - 2018/05/13</div>
+				    	</div> -->
+				    </div>
+			    </div>
+			</div>
+	
+			<script type="text/html" id="gloryLists">
+				<%if(data!=null){%>
+					<%for(var i=0;i<data.trainDetailList.length;i++){%>
+						<div class="list">
+				    		<div class="bg" data-id="<%=data.trainDetailList[i].trainId;%>" style="background: url(<%=data.trainDetailList[i].imgurl;%>) no-repeat center center / 100% auto">
+				    			<!--<div class="price">¥ <%=data.trainDetailList[i].price;%></div>-->
+				    		</div>
+				    		<div class="camp-name">
+				    			<span><%=data.trainDetailList[i].theme;%></span>
+				    			<span><%=data.trainDetailList[i].level;%>期</span>
+				    			<%if(data.trainDetailList[i].conditions == 0){%>
+									<span class="record" data-id="<%=data.trainDetailList[i].trainId;%>">成长记录</span>
+								<%}else{%>
+								<%}%>
+				    			
+				    		</div>
+				    		<div class="time">
+				    			<span>开营时间：</span>
+				    			<span class="new-time"><%=data.trainDetailList[i].campBegin;%></span>
+				    			<span>-</span>
+				    			<span class="new-time"><%=data.trainDetailList[i].campEnd;%></span>
+				    		</div>
+				    	</div>
+					<%}%>
+				<%}else{%>
+					<div class="no-data">暂无训练营数据</div>
+				<%}%>
+			</script>
+
+		</div>
+	</div>
+<div th:include="components::footer"></div>
+</body>
+<script type="text/javascript">
+	page.scoutGlory();
+</script>
+</html>

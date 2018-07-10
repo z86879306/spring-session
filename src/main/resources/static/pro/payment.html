@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>缴费成功</title>
+<head th:include="components :: header"></head>
+<body>
+	<div class="payment">
+		<div class="pay-icon"></div>
+		<div class="pay-tip">缴费成功</div>
+		<div class="pay-desc">
+			<p class="now-time">您已于2018年4月26号 8:30 成功报名</p>
+			<p>感谢您的报名</p>
+			<p>稍后教官将于您联系</p>
+		</div>
+		<div class="paywxcode"><img src="images/wxcode.png"/></div>
+		<p class="paywx_p">长按识别二维码，关注童子军微信公众号</p>
+		<p class="paywx_p">更可获得孩子的课程记录</p>
+		<a href="javascript:;" class="pay-btn common-btn fixed_btn">查看缴费记录</a>
+	</div>
+<div th:include="components::footer"></div>
+<script type="text/javascript">
+	page.payment();
+</script>
+</body>
+</html>

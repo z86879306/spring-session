@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>环球童子军</title>
+<head th:include="components :: header"></head>
+<style type="text/css">
+	body {
+		padding-bottom: 1rem;
+	}
+</style>
+<body>
+	<div class="company">
+		<div class="swiper-common">
+	        <div class="swiper-wrapper">
+	        	<script type="text/html" id="Carousel">
+					<%for(var i = 0;i < data.length; i++){%>
+						<div class="swiper-slide">
+			            	<img src="<%=data[i].imgUrl;%>" alt="">
+			            </div>
+					<%}%>
+				</script>
+	        </div>
+	    	<div class="swiper-pagination"></div>
+	    </div>
+		
+		<div class="compny-inf">
+		</div>
+		
+	    <div>
+	    	<a href="javascript:;" class="contact-us">联系基地</a>
+	    </div>
+	</div>
+<div include="components::footer"></div>
+</body>
+<script type="text/javascript">
+	page.company();
+</script>
+</html>
